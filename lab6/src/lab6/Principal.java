@@ -75,6 +75,9 @@ public class Principal extends javax.swing.JFrame {
         bt_Modificar = new javax.swing.JButton();
         tf_Op = new javax.swing.JTextField();
         tf_Modi = new javax.swing.JTextField();
+        jd_Abrir = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ta_2 = new javax.swing.JTextArea();
         jmb_Menu = new javax.swing.JMenuBar();
         jm_Login = new javax.swing.JMenu();
         jm_CrearD = new javax.swing.JMenu();
@@ -82,6 +85,7 @@ public class Principal extends javax.swing.JFrame {
         jm_Mostar = new javax.swing.JMenu();
         jm_Eliminar = new javax.swing.JMenu();
         jm_Modificar = new javax.swing.JMenu();
+        jm_Abrir = new javax.swing.JMenu();
 
         jd_Login.setTitle("Login");
 
@@ -345,6 +349,21 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 100, Short.MAX_VALUE))
         );
 
+        ta_2.setColumns(20);
+        ta_2.setRows(5);
+        jScrollPane3.setViewportView(ta_2);
+
+        javax.swing.GroupLayout jd_AbrirLayout = new javax.swing.GroupLayout(jd_Abrir.getContentPane());
+        jd_Abrir.getContentPane().setLayout(jd_AbrirLayout);
+        jd_AbrirLayout.setHorizontalGroup(
+            jd_AbrirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        );
+        jd_AbrirLayout.setVerticalGroup(
+            jd_AbrirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gran A’Tuin ");
 
@@ -401,13 +420,22 @@ public class Principal extends javax.swing.JFrame {
         });
         jmb_Menu.add(jm_Modificar);
 
+        jm_Abrir.setText("Abrir Archivo de texto");
+        jm_Abrir.setEnabled(false);
+        jm_Abrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jm_AbrirMouseClicked(evt);
+            }
+        });
+        jmb_Menu.add(jm_Abrir);
+
         setJMenuBar(jmb_Menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
+            .addGap(0, 705, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,6 +503,7 @@ public class Principal extends javax.swing.JFrame {
             jm_Eliminar.setEnabled(true);
             jm_Mostar.setEnabled(true);
             jm_Modificar.setEnabled(true);
+            jm_Abrir.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(this, "Usuario Incorecto");
         }
@@ -606,6 +635,38 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_ModificarMouseClicked
 
+    private void jm_AbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_AbrirMouseClicked
+        // TODO add your handling code here:
+        File fichero = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        ta_2.setText("");
+        try {
+            JFileChooser jfc = new JFileChooser("./Mundos");
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de texto", "txt");
+            jfc.setFileFilter(filtro);
+            int selec = jfc.showOpenDialog(this);
+            if (selec == JFileChooser.APPROVE_OPTION) {
+                fichero = jfc.getSelectedFile();
+                fr = new FileReader(fichero);
+                br = new BufferedReader(fr);
+                String linea;
+                ta_2.setText("");
+                while ((linea = br.readLine()) != null) {
+                    ta_2.append(linea);
+                    ta_2.append("\n");
+                }//Fin del while
+            }//Fin del if
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+        }
+    }//GEN-LAST:event_jm_AbrirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -658,6 +719,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel hl_Contraseña;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JDialog jd_Abrir;
     private javax.swing.JDialog jd_Agregar;
     private javax.swing.JDialog jd_Eliminar;
     private javax.swing.JDialog jd_Login;
@@ -674,6 +737,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jl_Selc_M;
     private javax.swing.JLabel jl_Usuario;
     private javax.swing.JLabel jl_Vivas_C;
+    private javax.swing.JMenu jm_Abrir;
     private javax.swing.JMenu jm_Agregar_C;
     private javax.swing.JMenu jm_CrearD;
     private javax.swing.JMenu jm_Eliminar;
@@ -684,6 +748,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable jt_Tabla1;
     private javax.swing.JPasswordField pd_Clave;
     private javax.swing.JTextArea ta_1;
+    private javax.swing.JTextArea ta_2;
     private javax.swing.JTextField tf_Cant_E;
     private javax.swing.JTextField tf_Cant_Vivas;
     private javax.swing.JTextField tf_Modi;
