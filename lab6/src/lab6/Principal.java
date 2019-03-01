@@ -7,9 +7,14 @@ package lab6;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -40,9 +45,34 @@ public class Principal extends javax.swing.JFrame {
         bt_Login = new javax.swing.JButton();
         tf_Usuario = new javax.swing.JTextField();
         pd_Clave = new javax.swing.JPasswordField();
+        jd_Agregar = new javax.swing.JDialog();
+        cb_Mundos = new javax.swing.JComboBox<>();
+        jl_Selc_M = new javax.swing.JLabel();
+        bt_Aregar = new javax.swing.JButton();
+        jl_Nombre = new javax.swing.JLabel();
+        jl_Nombre_C_R = new javax.swing.JLabel();
+        jl_Cant_C_E = new javax.swing.JLabel();
+        jl_Numero_C = new javax.swing.JLabel();
+        jl_Vivas_C = new javax.swing.JLabel();
+        jl_Objeto_Magico = new javax.swing.JLabel();
+        tf_Nombre_C = new javax.swing.JTextField();
+        tf_Cant_E = new javax.swing.JTextField();
+        tf_Numero_A = new javax.swing.JTextField();
+        tf_Cant_Vivas = new javax.swing.JTextField();
+        tf_Nombre_R = new javax.swing.JTextField();
+        tf_Objeto_Magico = new javax.swing.JTextField();
+        jd_Mostar = new javax.swing.JDialog();
+        cb_Mundos2 = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_Tabla1 = new javax.swing.JTable();
+        jl_Mundos2 = new javax.swing.JLabel();
+        jd_Eliminar = new javax.swing.JDialog();
         jmb_Menu = new javax.swing.JMenuBar();
         jm_Login = new javax.swing.JMenu();
         jm_CrearD = new javax.swing.JMenu();
+        jm_Agregar_C = new javax.swing.JMenu();
+        jm_Mostar = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         jd_Login.setTitle("Login");
 
@@ -94,6 +124,159 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(107, Short.MAX_VALUE))
         );
 
+        cb_Mundos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        jl_Selc_M.setText("Seleccion de Mundo");
+
+        bt_Aregar.setText("Agregar");
+        bt_Aregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_AregarMouseClicked(evt);
+            }
+        });
+
+        jl_Nombre.setText("Nombre de la Criatura");
+
+        jl_Nombre_C_R.setText("Nombre de la region");
+
+        jl_Cant_C_E.setText("Cantidad de Energia Vital");
+
+        jl_Numero_C.setText("Numero maximo de Años");
+
+        jl_Vivas_C.setText("Cantidad de vivas de la especie");
+
+        jl_Objeto_Magico.setText("Objeto Magico");
+
+        javax.swing.GroupLayout jd_AgregarLayout = new javax.swing.GroupLayout(jd_Agregar.getContentPane());
+        jd_Agregar.getContentPane().setLayout(jd_AgregarLayout);
+        jd_AgregarLayout.setHorizontalGroup(
+            jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_AgregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bt_Aregar)
+                    .addGroup(jd_AgregarLayout.createSequentialGroup()
+                        .addComponent(jl_Vivas_C)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_Cant_Vivas))
+                    .addGroup(jd_AgregarLayout.createSequentialGroup()
+                        .addComponent(jl_Objeto_Magico)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_Objeto_Magico))
+                    .addGroup(jd_AgregarLayout.createSequentialGroup()
+                        .addComponent(jl_Nombre_C_R)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_Nombre_R))
+                    .addGroup(jd_AgregarLayout.createSequentialGroup()
+                        .addComponent(jl_Numero_C)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_Numero_A))
+                    .addGroup(jd_AgregarLayout.createSequentialGroup()
+                        .addComponent(jl_Cant_C_E)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_Cant_E))
+                    .addGroup(jd_AgregarLayout.createSequentialGroup()
+                        .addComponent(jl_Nombre)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_Nombre_C))
+                    .addGroup(jd_AgregarLayout.createSequentialGroup()
+                        .addComponent(jl_Selc_M)
+                        .addGap(30, 30, 30)
+                        .addComponent(cb_Mundos, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(161, Short.MAX_VALUE))
+        );
+        jd_AgregarLayout.setVerticalGroup(
+            jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_AgregarLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb_Mundos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_Selc_M))
+                .addGap(18, 18, 18)
+                .addGroup(jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Nombre)
+                    .addComponent(tf_Nombre_C, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Cant_C_E)
+                    .addComponent(tf_Cant_E, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Numero_C)
+                    .addComponent(tf_Numero_A, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Nombre_C_R)
+                    .addComponent(tf_Nombre_R, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Vivas_C)
+                    .addComponent(tf_Cant_Vivas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jd_AgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Objeto_Magico)
+                    .addComponent(tf_Objeto_Magico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(bt_Aregar)
+                .addContainerGap())
+        );
+
+        cb_Mundos2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cb_Mundos2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_Mundos2ItemStateChanged(evt);
+            }
+        });
+
+        jt_Tabla1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jt_Tabla1);
+
+        jl_Mundos2.setText("Mundos creados");
+
+        javax.swing.GroupLayout jd_MostarLayout = new javax.swing.GroupLayout(jd_Mostar.getContentPane());
+        jd_Mostar.getContentPane().setLayout(jd_MostarLayout);
+        jd_MostarLayout.setHorizontalGroup(
+            jd_MostarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_MostarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_MostarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jd_MostarLayout.createSequentialGroup()
+                        .addComponent(jl_Mundos2)
+                        .addGap(103, 103, 103)
+                        .addComponent(cb_Mundos2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        jd_MostarLayout.setVerticalGroup(
+            jd_MostarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_MostarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_MostarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_Mundos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_Mundos2))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jd_EliminarLayout = new javax.swing.GroupLayout(jd_Eliminar.getContentPane());
+        jd_Eliminar.getContentPane().setLayout(jd_EliminarLayout);
+        jd_EliminarLayout.setHorizontalGroup(
+            jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_EliminarLayout.setVerticalGroup(
+            jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gran A’Tuin ");
 
@@ -106,12 +289,36 @@ public class Principal extends javax.swing.JFrame {
         jmb_Menu.add(jm_Login);
 
         jm_CrearD.setText("Crear un mundo disco");
-        jm_CrearD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jm_CrearDActionPerformed(evt);
+        jm_CrearD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jm_CrearDMouseClicked(evt);
             }
         });
         jmb_Menu.add(jm_CrearD);
+
+        jm_Agregar_C.setText("Agregar Criaturas");
+        jm_Agregar_C.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jm_Agregar_CMouseClicked(evt);
+            }
+        });
+        jmb_Menu.add(jm_Agregar_C);
+
+        jm_Mostar.setText("Mostrar");
+        jm_Mostar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jm_MostarMouseClicked(evt);
+            }
+        });
+        jmb_Menu.add(jm_Mostar);
+
+        jMenu1.setText("Eliminar");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jmb_Menu.add(jMenu1);
 
         setJMenuBar(jmb_Menu);
 
@@ -129,11 +336,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jm_CrearDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_CrearDActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jm_CrearDActionPerformed
-
     private void jm_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_LoginMouseClicked
         // TODO add your handling code here:
         jd_Login.setModal(true);
@@ -144,6 +346,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void bt_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_LoginMouseClicked
         // TODO add your handling code here:
+        Mundo_Disco MD = new Mundo_Disco("./Usuario");
+        MD.cargarArchivo();
         if (tf_Usuario.getText().equals("xXxGranATuinxXx")) {
             String clave = pd_Clave.getText(), nue = "";
             int a, n, llave = Integer.parseInt(pd_Clave.getText());
@@ -188,7 +392,76 @@ public class Principal extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Usuario Incorecto");
         }
+        try {
+            MD.escribirArchivo();
+        } catch (IOException ex) {
+        }
     }//GEN-LAST:event_bt_LoginMouseClicked
+
+    private void jm_CrearDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_CrearDMouseClicked
+        // TODO add your handling code here:
+        MD.setNombre_t(JOptionPane.showInputDialog(this, "Ingrese nombre del mundo"));
+        md.add(MD);
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Mundos.getModel();
+        modelo.addElement(md);
+        cb_Mundos.setModel(modelo);
+        cb_Mundos2.setModel(modelo);
+    }//GEN-LAST:event_jm_CrearDMouseClicked
+
+    private void bt_AregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_AregarMouseClicked
+        // TODO add your handling code here:
+        MD = new Mundo_Disco("./Mundos");
+        MD.cargarArchivo();
+        ArrayList cria = new ArrayList();
+        c = new Criaturas(tf_Nombre_C.getText(), Double.parseDouble(tf_Cant_E.getText()), Integer.parseInt(tf_Numero_A.getText()), tf_Nombre_R.getText(), Integer.parseInt(tf_Cant_Vivas.getText()));
+        cria.add(c);
+        MD.getCria().add(c);
+        try {
+            MD.escribirArchivo();
+        } catch (IOException ex) {
+        }
+    }//GEN-LAST:event_bt_AregarMouseClicked
+
+    private void jm_MostarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_MostarMouseClicked
+        // TODO add your handling code here:
+        jd_Mostar.setModal(true);
+        jd_Mostar.pack();
+        jd_Mostar.setLocationRelativeTo(this);
+        jd_Mostar.setVisible(true);
+    }//GEN-LAST:event_jm_MostarMouseClicked
+
+    private void jm_Agregar_CMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_Agregar_CMouseClicked
+        // TODO add your handling code here:
+        jd_Agregar.setModal(true);
+        jd_Agregar.pack();
+        jd_Agregar.setLocationRelativeTo(this);
+        jd_Agregar.setVisible(true);
+    }//GEN-LAST:event_jm_Agregar_CMouseClicked
+
+    private void cb_Mundos2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_Mundos2ItemStateChanged
+        // TODO add your handling code here:
+        if (evt.getStateChange() == 2) {
+            Mundo_Disco s = (Mundo_Disco) cb_Mundos2.getSelectedItem();
+            Object[] newrow = {
+                s.getCria()};
+            DefaultTableModel modelo = (DefaultTableModel) jt_Tabla1.getModel();
+            modelo.addRow(newrow);
+            jt_Tabla1.setModel(modelo);
+        }
+    }//GEN-LAST:event_cb_Mundos2ItemStateChanged
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        MD = new Mundo_Disco("./Mundos");
+        int pos = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese posicion a eliminar"));
+        MD.cargarArchivo();
+        md.remove(pos);
+        MD.setCria(md);
+        try {
+            MD.escribirArchivo();
+        } catch (IOException ex) {
+        }
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -226,17 +499,42 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_Aregar;
     private javax.swing.JButton bt_Login;
+    private javax.swing.JComboBox<String> cb_Mundos;
+    private javax.swing.JComboBox<String> cb_Mundos2;
     private javax.swing.JLabel hl_Contraseña;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JDialog jd_Agregar;
+    private javax.swing.JDialog jd_Eliminar;
     private javax.swing.JDialog jd_Login;
+    private javax.swing.JDialog jd_Mostar;
+    private javax.swing.JLabel jl_Cant_C_E;
+    private javax.swing.JLabel jl_Mundos2;
+    private javax.swing.JLabel jl_Nombre;
+    private javax.swing.JLabel jl_Nombre_C_R;
+    private javax.swing.JLabel jl_Numero_C;
+    private javax.swing.JLabel jl_Objeto_Magico;
+    private javax.swing.JLabel jl_Selc_M;
     private javax.swing.JLabel jl_Usuario;
+    private javax.swing.JLabel jl_Vivas_C;
+    private javax.swing.JMenu jm_Agregar_C;
     private javax.swing.JMenu jm_CrearD;
     private javax.swing.JMenu jm_Login;
+    private javax.swing.JMenu jm_Mostar;
     private javax.swing.JMenuBar jmb_Menu;
+    private javax.swing.JTable jt_Tabla1;
     private javax.swing.JPasswordField pd_Clave;
+    private javax.swing.JTextField tf_Cant_E;
+    private javax.swing.JTextField tf_Cant_Vivas;
+    private javax.swing.JTextField tf_Nombre_C;
+    private javax.swing.JTextField tf_Nombre_R;
+    private javax.swing.JTextField tf_Numero_A;
+    private javax.swing.JTextField tf_Objeto_Magico;
     private javax.swing.JTextField tf_Usuario;
     // End of variables declaration//GEN-END:variables
-    private ArrayList<Mundo_Disco> md = new ArrayList();
+    private ArrayList md = new ArrayList();
     private Criaturas c;
     private Mundo_Disco MD;
 }
