@@ -67,12 +67,21 @@ public class Principal extends javax.swing.JFrame {
         jt_Tabla1 = new javax.swing.JTable();
         jl_Mundos2 = new javax.swing.JLabel();
         jd_Eliminar = new javax.swing.JDialog();
+        jd_Modificar = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ta_1 = new javax.swing.JTextArea();
+        jl_Opcion = new javax.swing.JLabel();
+        jl_Modificacion = new javax.swing.JLabel();
+        bt_Modificar = new javax.swing.JButton();
+        tf_Op = new javax.swing.JTextField();
+        tf_Modi = new javax.swing.JTextField();
         jmb_Menu = new javax.swing.JMenuBar();
         jm_Login = new javax.swing.JMenu();
         jm_CrearD = new javax.swing.JMenu();
         jm_Agregar_C = new javax.swing.JMenu();
         jm_Mostar = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
+        jm_Eliminar = new javax.swing.JMenu();
+        jm_Modificar = new javax.swing.JMenu();
 
         jd_Login.setTitle("Login");
 
@@ -277,6 +286,65 @@ public class Principal extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        ta_1.setEditable(false);
+        ta_1.setColumns(20);
+        ta_1.setRows(5);
+        ta_1.setText("1. Nombre del mundo\n2. Nombre de la criatura\n3. Numero maximo de años\n4. Nombre de la region\n5. Cantidad de vivas de esa especie\n6. Objetos Maximos\n");
+        jScrollPane2.setViewportView(ta_1);
+
+        jl_Opcion.setText("Ingrese una opcion");
+
+        jl_Modificacion.setText("Valor de modificacion");
+
+        bt_Modificar.setText("Modificar");
+        bt_Modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_ModificarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_ModificarLayout = new javax.swing.GroupLayout(jd_Modificar.getContentPane());
+        jd_Modificar.getContentPane().setLayout(jd_ModificarLayout);
+        jd_ModificarLayout.setHorizontalGroup(
+            jd_ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ModificarLayout.createSequentialGroup()
+                .addGroup(jd_ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jd_ModificarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jd_ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jd_ModificarLayout.createSequentialGroup()
+                                .addComponent(jl_Opcion)
+                                .addGap(18, 18, 18)
+                                .addComponent(tf_Op))
+                            .addGroup(jd_ModificarLayout.createSequentialGroup()
+                                .addComponent(jl_Modificacion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tf_Modi, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 172, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jd_ModificarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bt_Modificar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jd_ModificarLayout.setVerticalGroup(
+            jd_ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_ModificarLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jd_ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Opcion)
+                    .addComponent(tf_Op, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jd_ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Modificacion)
+                    .addComponent(tf_Modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addComponent(bt_Modificar)
+                .addGap(0, 100, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gran A’Tuin ");
 
@@ -289,6 +357,7 @@ public class Principal extends javax.swing.JFrame {
         jmb_Menu.add(jm_Login);
 
         jm_CrearD.setText("Crear un mundo disco");
+        jm_CrearD.setEnabled(false);
         jm_CrearD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jm_CrearDMouseClicked(evt);
@@ -297,6 +366,7 @@ public class Principal extends javax.swing.JFrame {
         jmb_Menu.add(jm_CrearD);
 
         jm_Agregar_C.setText("Agregar Criaturas");
+        jm_Agregar_C.setEnabled(false);
         jm_Agregar_C.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jm_Agregar_CMouseClicked(evt);
@@ -305,6 +375,7 @@ public class Principal extends javax.swing.JFrame {
         jmb_Menu.add(jm_Agregar_C);
 
         jm_Mostar.setText("Mostrar");
+        jm_Mostar.setEnabled(false);
         jm_Mostar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jm_MostarMouseClicked(evt);
@@ -312,13 +383,23 @@ public class Principal extends javax.swing.JFrame {
         });
         jmb_Menu.add(jm_Mostar);
 
-        jMenu1.setText("Eliminar");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jm_Eliminar.setText("Eliminar");
+        jm_Eliminar.setEnabled(false);
+        jm_Eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+                jm_EliminarMouseClicked(evt);
             }
         });
-        jmb_Menu.add(jMenu1);
+        jmb_Menu.add(jm_Eliminar);
+
+        jm_Modificar.setText("Modificar");
+        jm_Modificar.setEnabled(false);
+        jm_Modificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jm_ModificarMouseClicked(evt);
+            }
+        });
+        jmb_Menu.add(jm_Modificar);
 
         setJMenuBar(jmb_Menu);
 
@@ -389,6 +470,11 @@ public class Principal extends javax.swing.JFrame {
                     e.printStackTrace();
                 }
             }
+            jm_Agregar_C.setEnabled(true);
+            jm_CrearD.setEnabled(true);
+            jm_Eliminar.setEnabled(true);
+            jm_Mostar.setEnabled(true);
+            jm_Modificar.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(this, "Usuario Incorecto");
         }
@@ -450,7 +536,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cb_Mundos2ItemStateChanged
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+    private void jm_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_EliminarMouseClicked
         // TODO add your handling code here:
         MD = new Mundo_Disco("./Mundos");
         int pos = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese posicion a eliminar"));
@@ -461,7 +547,65 @@ public class Principal extends javax.swing.JFrame {
             MD.escribirArchivo();
         } catch (IOException ex) {
         }
-    }//GEN-LAST:event_jMenu1MouseClicked
+    }//GEN-LAST:event_jm_EliminarMouseClicked
+
+    private void jm_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_ModificarMouseClicked
+        // TODO add your handling code here:
+        jd_Modificar.setModal(true);
+        jd_Modificar.pack();
+        jd_Modificar.setLocationRelativeTo(this);
+        jd_Modificar.setVisible(true);
+    }//GEN-LAST:event_jm_ModificarMouseClicked
+
+    private void bt_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_ModificarMouseClicked
+        // TODO add your handling code here:
+        MD = new Mundo_Disco("./Mundos");
+        MD.cargarArchivo();
+        ArrayList md2 = new ArrayList();
+        int op = Integer.parseInt(tf_Op.getText());
+        String op2 = tf_Op.getText();
+        if (op == 1 || op2.equalsIgnoreCase("nombre del mundo")) {
+            MD.setNombre_t(tf_Modi.getText());
+            try {
+                MD.escribirArchivo();
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (op == 2 || op2.equals("nombre de la criatura")) {
+            c.setNombre_c(tf_Modi.getText());
+            try {
+                MD.escribirArchivo();
+            } catch (IOException ex) {
+            }
+        } else if (op == 3 || op2.equals("numero maximo de años")) {
+            c.setAños(Integer.parseInt(tf_Modi.getText()));
+            try {
+                MD.escribirArchivo();
+            } catch (IOException ex) {
+            }
+        } else if (op == 4 || op2.equals("nombre de la region")) {
+            c.setNombre_r(tf_Modi.getText());
+            try {
+                MD.escribirArchivo();
+            } catch (IOException ex) {
+            }
+        } else if (op == 5 || op2.equals("cantidad de vivas de esa especio")) {
+            c.setCant_p(Integer.parseInt(tf_Modi.getText()));
+            try {
+                MD.escribirArchivo();
+            } catch (IOException ex) {
+            }
+        } else if (op == 6 || op2.equals("objetos magicos")) {
+            md2.add(tf_Modi.getText());
+            c.setObjectos_m(md2);
+            try {
+                MD.escribirArchivo();
+            } catch (IOException ex) {
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Opcion no valida");
+        }
+    }//GEN-LAST:event_bt_ModificarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -501,37 +645,46 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_Aregar;
     private javax.swing.JButton bt_Login;
+    private javax.swing.JButton bt_Modificar;
     private javax.swing.JComboBox<String> cb_Mundos;
     private javax.swing.JComboBox<String> cb_Mundos2;
     private javax.swing.JLabel hl_Contraseña;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JDialog jd_Agregar;
     private javax.swing.JDialog jd_Eliminar;
     private javax.swing.JDialog jd_Login;
+    private javax.swing.JDialog jd_Modificar;
     private javax.swing.JDialog jd_Mostar;
     private javax.swing.JLabel jl_Cant_C_E;
+    private javax.swing.JLabel jl_Modificacion;
     private javax.swing.JLabel jl_Mundos2;
     private javax.swing.JLabel jl_Nombre;
     private javax.swing.JLabel jl_Nombre_C_R;
     private javax.swing.JLabel jl_Numero_C;
     private javax.swing.JLabel jl_Objeto_Magico;
+    private javax.swing.JLabel jl_Opcion;
     private javax.swing.JLabel jl_Selc_M;
     private javax.swing.JLabel jl_Usuario;
     private javax.swing.JLabel jl_Vivas_C;
     private javax.swing.JMenu jm_Agregar_C;
     private javax.swing.JMenu jm_CrearD;
+    private javax.swing.JMenu jm_Eliminar;
     private javax.swing.JMenu jm_Login;
+    private javax.swing.JMenu jm_Modificar;
     private javax.swing.JMenu jm_Mostar;
     private javax.swing.JMenuBar jmb_Menu;
     private javax.swing.JTable jt_Tabla1;
     private javax.swing.JPasswordField pd_Clave;
+    private javax.swing.JTextArea ta_1;
     private javax.swing.JTextField tf_Cant_E;
     private javax.swing.JTextField tf_Cant_Vivas;
+    private javax.swing.JTextField tf_Modi;
     private javax.swing.JTextField tf_Nombre_C;
     private javax.swing.JTextField tf_Nombre_R;
     private javax.swing.JTextField tf_Numero_A;
     private javax.swing.JTextField tf_Objeto_Magico;
+    private javax.swing.JTextField tf_Op;
     private javax.swing.JTextField tf_Usuario;
     // End of variables declaration//GEN-END:variables
     private ArrayList md = new ArrayList();
