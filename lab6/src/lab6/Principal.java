@@ -5,8 +5,11 @@
  */
 package lab6;
 
+import java.io.*;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.*;
 
 /**
  *
@@ -31,71 +34,75 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jd_Creacion = new javax.swing.JDialog();
-        jl_NombreMD = new javax.swing.JLabel();
-        jl_NombreC = new javax.swing.JLabel();
-        jl_EnergiaC = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jl_Nombre_r_c = new javax.swing.JLabel();
-        jl_Cantidad_Vivas = new javax.swing.JLabel();
-        jl_ObjetoMagico = new javax.swing.JLabel();
+        jd_Login = new javax.swing.JDialog();
+        jl_Usuario = new javax.swing.JLabel();
+        hl_Contraseña = new javax.swing.JLabel();
+        bt_Login = new javax.swing.JButton();
+        tf_Usuario = new javax.swing.JTextField();
+        pd_Clave = new javax.swing.JPasswordField();
         jmb_Menu = new javax.swing.JMenuBar();
         jm_Login = new javax.swing.JMenu();
         jm_CrearD = new javax.swing.JMenu();
 
-        jl_NombreMD.setText("Nombre del mundo");
+        jd_Login.setTitle("Login");
 
-        jl_NombreC.setText("Nombre de la Criatura");
+        jl_Usuario.setText("Ingrese usuario");
 
-        jl_EnergiaC.setText("Cantidad de energia vital");
+        hl_Contraseña.setText("Contraseña");
 
-        jLabel4.setText("Numero maximo de años de la criatura");
+        bt_Login.setText("Login");
+        bt_Login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_LoginMouseClicked(evt);
+            }
+        });
 
-        jl_Nombre_r_c.setText("Nombre de la region de al criatura");
-
-        jl_Cantidad_Vivas.setText("Cantidad de vivas de la especie");
-
-        jl_ObjetoMagico.setText("Objecto magico");
-
-        javax.swing.GroupLayout jd_CreacionLayout = new javax.swing.GroupLayout(jd_Creacion.getContentPane());
-        jd_Creacion.getContentPane().setLayout(jd_CreacionLayout);
-        jd_CreacionLayout.setHorizontalGroup(
-            jd_CreacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_CreacionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jd_CreacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jl_NombreMD)
-                    .addComponent(jl_NombreC)
-                    .addComponent(jl_EnergiaC, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jl_Nombre_r_c)
-                    .addComponent(jl_Cantidad_Vivas)
-                    .addComponent(jl_ObjetoMagico))
-                .addContainerGap(165, Short.MAX_VALUE))
+        javax.swing.GroupLayout jd_LoginLayout = new javax.swing.GroupLayout(jd_Login.getContentPane());
+        jd_Login.getContentPane().setLayout(jd_LoginLayout);
+        jd_LoginLayout.setHorizontalGroup(
+            jd_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_LoginLayout.createSequentialGroup()
+                .addGroup(jd_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_LoginLayout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(bt_Login))
+                    .addGroup(jd_LoginLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(hl_Contraseña)
+                        .addGap(18, 18, 18)
+                        .addComponent(pd_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_LoginLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jl_Usuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
-        jd_CreacionLayout.setVerticalGroup(
-            jd_CreacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_CreacionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jl_NombreMD)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jl_NombreC)
+        jd_LoginLayout.setVerticalGroup(
+            jd_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_LoginLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(jd_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Usuario)
+                    .addComponent(tf_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jl_EnergiaC)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jl_Nombre_r_c)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jl_Cantidad_Vivas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jl_ObjetoMagico)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addGroup(jd_LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hl_Contraseña)
+                    .addComponent(pd_Clave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addComponent(bt_Login)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gran A’Tuin ");
 
         jm_Login.setText("Login");
+        jm_Login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jm_LoginMouseClicked(evt);
+            }
+        });
         jmb_Menu.add(jm_Login);
 
         jm_CrearD.setText("Crear un mundo disco");
@@ -112,11 +119,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+            .addGap(0, 566, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 297, Short.MAX_VALUE)
         );
 
         pack();
@@ -124,7 +131,64 @@ public class Principal extends javax.swing.JFrame {
 
     private void jm_CrearDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_CrearDActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jm_CrearDActionPerformed
+
+    private void jm_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_LoginMouseClicked
+        // TODO add your handling code here:
+        jd_Login.setModal(true);
+        jd_Login.pack();
+        jd_Login.setLocationRelativeTo(this);
+        jd_Login.setVisible(true);
+    }//GEN-LAST:event_jm_LoginMouseClicked
+
+    private void bt_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_LoginMouseClicked
+        // TODO add your handling code here:
+        if (tf_Usuario.getText().equals("xXxGranATuinxXx")) {
+            String clave = pd_Clave.getText(), nue = "";
+            int a, n, llave = Integer.parseInt(pd_Clave.getText());
+            char l;
+            for (int i = 0; i < clave.length(); i++) {
+                a = clave.codePointAt(i);
+                if (a == 122) {
+                    a = 65;
+                }
+                if (a == 90) {
+                    a = 97;
+                }
+                n = a + llave;
+                l = (char) n;
+                nue += l;
+            }//Fin del for 
+            JFileChooser jfc = new JFileChooser("./Mundos");
+            FileNameExtensionFilter filt = new FileNameExtensionFilter("Archivos de texto", "txt");
+            jfc.addChoosableFileFilter(filt);
+            int selec = jfc.showSaveDialog(this);
+            FileWriter fw = null;
+            BufferedWriter bw = null;
+            if (selec == JFileChooser.APPROVE_OPTION) {
+                try {
+                    File fichero = null;
+                    if (jfc.getFileFilter().getDescription().equals("Archivos de Texto")) {
+                        fichero = new File(jfc.getSelectedFile().getPath() + "txt");
+                    } else {
+                        fichero = jfc.getSelectedFile();
+                    }
+                    fw = new FileWriter(fichero);
+                    bw = new BufferedWriter(fw);
+                    bw.write(tf_Usuario + "/" + nue + "/" + pd_Clave);
+                    pd_Clave.setText("");
+                    tf_Usuario.setText("");
+                    bw.flush();
+                    JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario Incorecto");
+        }
+    }//GEN-LAST:event_bt_LoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -162,17 +226,17 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JDialog jd_Creacion;
-    private javax.swing.JLabel jl_Cantidad_Vivas;
-    private javax.swing.JLabel jl_EnergiaC;
-    private javax.swing.JLabel jl_NombreC;
-    private javax.swing.JLabel jl_NombreMD;
-    private javax.swing.JLabel jl_Nombre_r_c;
-    private javax.swing.JLabel jl_ObjetoMagico;
+    private javax.swing.JButton bt_Login;
+    private javax.swing.JLabel hl_Contraseña;
+    private javax.swing.JDialog jd_Login;
+    private javax.swing.JLabel jl_Usuario;
     private javax.swing.JMenu jm_CrearD;
     private javax.swing.JMenu jm_Login;
     private javax.swing.JMenuBar jmb_Menu;
+    private javax.swing.JPasswordField pd_Clave;
+    private javax.swing.JTextField tf_Usuario;
     // End of variables declaration//GEN-END:variables
     private ArrayList<Mundo_Disco> md = new ArrayList();
+    private Criaturas c;
+    private Mundo_Disco MD;
 }
