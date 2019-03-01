@@ -7,6 +7,8 @@ package lab6;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -442,7 +444,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 705, Short.MAX_VALUE)
+            .addGap(0, 798, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,6 +511,7 @@ public class Principal extends javax.swing.JFrame {
             jm_Mostar.setEnabled(true);
             jm_Modificar.setEnabled(true);
             jm_Abrir.setEnabled(true);
+            jm_Guardar.setEnabled(true);
         } else {
             JOptionPane.showMessageDialog(this, "Usuario Incorecto");
         }
@@ -516,22 +519,43 @@ public class Principal extends javax.swing.JFrame {
 
     private void jm_CrearDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_CrearDMouseClicked
         // TODO add your handling code here:
-
+        String nombre = JOptionPane.showInputDialog(this, "Ingrese nombre del mundo");
+        md = new Mundo_Disco(nombre);
+        MD.add(md);
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Mundos.getModel();
+        modelo.addElement(md);
+        cb_Mundos.setModel(modelo);
+        cb_Mundos2.setModel(modelo);
     }//GEN-LAST:event_jm_CrearDMouseClicked
 
     private void bt_AregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_AregarMouseClicked
         // TODO add your handling code here:
-
+        try {
+            MD2 = new Mundo_Disco_2("./Mundos");
+            c = new Criaturas(tf_Nombre_C.getText(), Double.parseDouble(tf_Cant_E.getText()), Integer.parseInt(tf_Numero_A.getText()), tf_Nombre_R.getText(), Integer.parseInt(tf_Cant_Vivas.getText()));
+            ArrayList cria = new ArrayList();
+            cria.add(c);
+            md.setCria(cria);
+            MD2.getCria().add(c);
+            MD2.escribirArchivo();
+        } catch (IOException ex) {
+        }
     }//GEN-LAST:event_bt_AregarMouseClicked
 
     private void jm_MostarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_MostarMouseClicked
         // TODO add your handling code here:
-
+        jd_Mostar.setModal(true);
+        jd_Mostar.pack();
+        jd_Mostar.setLocationRelativeTo(this);
+        jd_Mostar.setVisible(true);
     }//GEN-LAST:event_jm_MostarMouseClicked
 
     private void jm_Agregar_CMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_Agregar_CMouseClicked
         // TODO add your handling code here:
-
+        jd_Agregar.setModal(true);
+        jd_Agregar.pack();
+        jd_Agregar.setLocationRelativeTo(this);
+        jd_Agregar.setVisible(true);
     }//GEN-LAST:event_jm_Agregar_CMouseClicked
 
     private void cb_Mundos2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_Mundos2ItemStateChanged
@@ -682,4 +706,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_Usuario;
     // End of variables declaration//GEN-END:variables
   private String usuario = "xXxGranATuinxXx";
+    private Mundo_Disco md;
+    private Criaturas c;
+    private ArrayList<Mundo_Disco> MD = new ArrayList();
+    private Mundo_Disco_2 MD2;
 }
