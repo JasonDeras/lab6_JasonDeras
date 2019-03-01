@@ -637,6 +637,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void jm_AbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_AbrirMouseClicked
         // TODO add your handling code here:
+        jd_Abrir.setModal(true);
+        jd_Abrir.pack();
+        jd_Abrir.setLocationRelativeTo(this);
+        jd_Abrir.setVisible(true);
         File fichero = null;
         FileReader fr = null;
         BufferedReader br = null;
