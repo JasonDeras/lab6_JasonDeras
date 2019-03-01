@@ -7,9 +7,6 @@ package lab6;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -86,6 +83,7 @@ public class Principal extends javax.swing.JFrame {
         jm_Eliminar = new javax.swing.JMenu();
         jm_Modificar = new javax.swing.JMenu();
         jm_Abrir = new javax.swing.JMenu();
+        jm_Guardar = new javax.swing.JMenu();
 
         jd_Login.setTitle("Login");
 
@@ -429,6 +427,15 @@ public class Principal extends javax.swing.JFrame {
         });
         jmb_Menu.add(jm_Abrir);
 
+        jm_Guardar.setText("Guardar Archivo");
+        jm_Guardar.setEnabled(false);
+        jm_Guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jm_GuardarMouseClicked(evt);
+            }
+        });
+        jmb_Menu.add(jm_Guardar);
+
         setJMenuBar(jmb_Menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -455,9 +462,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void bt_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_LoginMouseClicked
         // TODO add your handling code here:
-        Mundo_Disco MD = new Mundo_Disco("./Usuario");
-        MD.cargarArchivo();
-        if (tf_Usuario.getText().equals("xXxGranATuinxXx")) {
+        if (tf_Usuario.getText().equals(usuario)) {
             String clave = pd_Clave.getText(), nue = "";
             int a, n, llave = Integer.parseInt(pd_Clave.getText());
             char l;
@@ -507,169 +512,81 @@ public class Principal extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Usuario Incorecto");
         }
-        try {
-            MD.escribirArchivo();
-        } catch (IOException ex) {
-        }
     }//GEN-LAST:event_bt_LoginMouseClicked
 
     private void jm_CrearDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_CrearDMouseClicked
         // TODO add your handling code here:
-        MD.setNombre_t(JOptionPane.showInputDialog(this, "Ingrese nombre del mundo"));
-        md.add(MD);
-        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Mundos.getModel();
-        modelo.addElement(md);
-        cb_Mundos.setModel(modelo);
-        cb_Mundos2.setModel(modelo);
+
     }//GEN-LAST:event_jm_CrearDMouseClicked
 
     private void bt_AregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_AregarMouseClicked
         // TODO add your handling code here:
-        MD = new Mundo_Disco("./Mundos");
-        MD.cargarArchivo();
-        ArrayList cria = new ArrayList();
-        c = new Criaturas(tf_Nombre_C.getText(), Double.parseDouble(tf_Cant_E.getText()), Integer.parseInt(tf_Numero_A.getText()), tf_Nombre_R.getText(), Integer.parseInt(tf_Cant_Vivas.getText()));
-        cria.add(c);
-        MD.getCria().add(c);
-        try {
-            MD.escribirArchivo();
-        } catch (IOException ex) {
-        }
+
     }//GEN-LAST:event_bt_AregarMouseClicked
 
     private void jm_MostarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_MostarMouseClicked
         // TODO add your handling code here:
-        jd_Mostar.setModal(true);
-        jd_Mostar.pack();
-        jd_Mostar.setLocationRelativeTo(this);
-        jd_Mostar.setVisible(true);
+
     }//GEN-LAST:event_jm_MostarMouseClicked
 
     private void jm_Agregar_CMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_Agregar_CMouseClicked
         // TODO add your handling code here:
-        jd_Agregar.setModal(true);
-        jd_Agregar.pack();
-        jd_Agregar.setLocationRelativeTo(this);
-        jd_Agregar.setVisible(true);
+
     }//GEN-LAST:event_jm_Agregar_CMouseClicked
 
     private void cb_Mundos2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_Mundos2ItemStateChanged
         // TODO add your handling code here:
-        if (evt.getStateChange() == 2) {
-            Mundo_Disco s = (Mundo_Disco) cb_Mundos2.getSelectedItem();
-            Object[] newrow = {
-                s.getCria()};
-            DefaultTableModel modelo = (DefaultTableModel) jt_Tabla1.getModel();
-            modelo.addRow(newrow);
-            jt_Tabla1.setModel(modelo);
-        }
+
     }//GEN-LAST:event_cb_Mundos2ItemStateChanged
 
     private void jm_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_EliminarMouseClicked
-        // TODO add your handling code here:
-        MD = new Mundo_Disco("./Mundos");
-        int pos = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese posicion a eliminar"));
-        MD.cargarArchivo();
-        md.remove(pos);
-        MD.setCria(md);
-        try {
-            MD.escribirArchivo();
-        } catch (IOException ex) {
-        }
+
     }//GEN-LAST:event_jm_EliminarMouseClicked
 
     private void jm_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_ModificarMouseClicked
         // TODO add your handling code here:
-        jd_Modificar.setModal(true);
-        jd_Modificar.pack();
-        jd_Modificar.setLocationRelativeTo(this);
-        jd_Modificar.setVisible(true);
+
     }//GEN-LAST:event_jm_ModificarMouseClicked
 
     private void bt_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_ModificarMouseClicked
         // TODO add your handling code here:
-        MD = new Mundo_Disco("./Mundos");
-        MD.cargarArchivo();
-        ArrayList md2 = new ArrayList();
-        int op = Integer.parseInt(tf_Op.getText());
-        String op2 = tf_Op.getText();
-        if (op == 1 || op2.equalsIgnoreCase("nombre del mundo")) {
-            MD.setNombre_t(tf_Modi.getText());
-            try {
-                MD.escribirArchivo();
-            } catch (IOException ex) {
-            }
-        } else if (op == 2 || op2.equals("nombre de la criatura")) {
-            c.setNombre_c(tf_Modi.getText());
-            try {
-                MD.escribirArchivo();
-            } catch (IOException ex) {
-            }
-        } else if (op == 3 || op2.equals("numero maximo de años")) {
-            c.setAños(Integer.parseInt(tf_Modi.getText()));
-            try {
-                MD.escribirArchivo();
-            } catch (IOException ex) {
-            }
-        } else if (op == 4 || op2.equals("nombre de la region")) {
-            c.setNombre_r(tf_Modi.getText());
-            try {
-                MD.escribirArchivo();
-            } catch (IOException ex) {
-            }
-        } else if (op == 5 || op2.equals("cantidad de vivas de esa especio")) {
-            c.setCant_p(Integer.parseInt(tf_Modi.getText()));
-            try {
-                MD.escribirArchivo();
-            } catch (IOException ex) {
-            }
-        } else if (op == 6 || op2.equals("objetos magicos")) {
-            md2.add(tf_Modi.getText());
-            c.setObjectos_m(md2);
-            try {
-                MD.escribirArchivo();
-            } catch (IOException ex) {
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Opcion no valida");
-        }
+
     }//GEN-LAST:event_bt_ModificarMouseClicked
 
     private void jm_AbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_AbrirMouseClicked
         // TODO add your handling code here:
-        jd_Abrir.setModal(true);
-        jd_Abrir.pack();
-        jd_Abrir.setLocationRelativeTo(this);
-        jd_Abrir.setVisible(true);
-        File fichero = null;
-        FileReader fr = null;
-        BufferedReader br = null;
-        ta_2.setText("");
-        try {
-            JFileChooser jfc = new JFileChooser("./Mundos");
-            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de texto", "txt");
-            jfc.setFileFilter(filtro);
-            int selec = jfc.showOpenDialog(this);
-            if (selec == JFileChooser.APPROVE_OPTION) {
-                fichero = jfc.getSelectedFile();
-                fr = new FileReader(fichero);
-                br = new BufferedReader(fr);
-                String linea;
-                ta_2.setText("");
-                while ((linea = br.readLine()) != null) {
-                    ta_2.append(linea);
-                    ta_2.append("\n");
-                }//Fin del while
-            }//Fin del if
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            br.close();
-            fr.close();
-        } catch (IOException e) {
-        }
+
     }//GEN-LAST:event_jm_AbrirMouseClicked
+
+    private void jm_GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_GuardarMouseClicked
+        // TODO add your handling code here:
+        JFileChooser jfc = new JFileChooser("./Mundos");
+        FileNameExtensionFilter filt = new FileNameExtensionFilter("Archivos de texto", "txt");
+        jfc.addChoosableFileFilter(filt);
+        int selec = jfc.showSaveDialog(this);
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        if (selec == JFileChooser.APPROVE_OPTION) {
+            try {
+                File fichero = null;
+                if (jfc.getFileFilter().getDescription().equals("Archivos de Texto")) {
+                    fichero = new File(jfc.getSelectedFile().getPath() + "txt");
+                } else {
+                    fichero = jfc.getSelectedFile();
+                }
+                fw = new FileWriter(fichero);
+                bw = new BufferedWriter(fw);
+                String nue = "";
+                bw.write(tf_Usuario + "/" + nue + "/" + pd_Clave);
+                pd_Clave.setText("");
+                tf_Usuario.setText("");
+                bw.flush();
+                JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jm_GuardarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -745,6 +662,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jm_Agregar_C;
     private javax.swing.JMenu jm_CrearD;
     private javax.swing.JMenu jm_Eliminar;
+    private javax.swing.JMenu jm_Guardar;
     private javax.swing.JMenu jm_Login;
     private javax.swing.JMenu jm_Modificar;
     private javax.swing.JMenu jm_Mostar;
@@ -763,7 +681,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_Op;
     private javax.swing.JTextField tf_Usuario;
     // End of variables declaration//GEN-END:variables
-    private ArrayList md = new ArrayList();
-    private Criaturas c;
-    private Mundo_Disco MD;
+  private String usuario = "xXxGranATuinxXx";
 }

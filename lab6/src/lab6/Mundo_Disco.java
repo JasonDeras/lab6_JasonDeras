@@ -8,7 +8,7 @@ public class Mundo_Disco {
 
     private String nombre_t;
     private ArrayList<Criaturas> cria = new ArrayList();
-    private File archivo = null;
+    private File archivo;
 
     public Mundo_Disco(String nombre_t) {
         this.nombre_t = nombre_t;
@@ -46,12 +46,13 @@ public class Mundo_Disco {
             fw = new FileWriter(archivo, true);
             bw = new BufferedWriter(fw);
             for (Criaturas c : cria) {
-                bw.write(c.getNombre_c() + ";");
-                bw.write(c.getEnergia_v() + ";");
-                bw.write(c.getAños() + ";");
-                bw.write(c.getNombre_r() + ";");
-                bw.write(c.getCant_p() + ";");
+                bw.write(c.getNombre_c() + "|");
+                bw.write(c.getEnergia_v() + "|");
+                bw.write(c.getAños() + "|");
+                bw.write(c.getNombre_r() + "|");
+                bw.write(c.getCant_p() + "|");
             }
+            bw.write("|");
             bw.flush();
         } catch (Exception ex) {
         }
@@ -65,7 +66,7 @@ public class Mundo_Disco {
         if (archivo.exists()) {
             try {
                 s = new Scanner(archivo);
-                s.useDelimiter(";");
+                s.useDelimiter("|");
                 while (s.hasNext()) {
                     cria.add(new Criaturas(s.next(), s.nextDouble(), s.nextInt(), s.next(), s.nextInt()));
                 }
@@ -73,5 +74,6 @@ public class Mundo_Disco {
             }
             s.close();
         }
+        s.close();
     }
 }
