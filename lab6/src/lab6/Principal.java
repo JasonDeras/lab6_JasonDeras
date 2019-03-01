@@ -61,10 +61,8 @@ public class Principal extends javax.swing.JFrame {
         tf_Nombre_R = new javax.swing.JTextField();
         tf_Objeto_Magico = new javax.swing.JTextField();
         jd_Mostar = new javax.swing.JDialog();
-        cb_Mundos2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jt_Tabla1 = new javax.swing.JTable();
-        jl_Mundos2 = new javax.swing.JLabel();
+        ta_3 = new javax.swing.JTextArea();
         jd_Eliminar = new javax.swing.JDialog();
         jd_Modificar = new javax.swing.JDialog();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -234,49 +232,20 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        cb_Mundos2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        cb_Mundos2.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cb_Mundos2ItemStateChanged(evt);
-            }
-        });
-
-        jt_Tabla1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(jt_Tabla1);
-
-        jl_Mundos2.setText("Mundos creados");
+        ta_3.setEditable(false);
+        ta_3.setColumns(20);
+        ta_3.setRows(5);
+        jScrollPane1.setViewportView(ta_3);
 
         javax.swing.GroupLayout jd_MostarLayout = new javax.swing.GroupLayout(jd_Mostar.getContentPane());
         jd_Mostar.getContentPane().setLayout(jd_MostarLayout);
         jd_MostarLayout.setHorizontalGroup(
             jd_MostarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_MostarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jd_MostarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jd_MostarLayout.createSequentialGroup()
-                        .addComponent(jl_Mundos2)
-                        .addGap(103, 103, 103)
-                        .addComponent(cb_Mundos2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
         );
         jd_MostarLayout.setVerticalGroup(
             jd_MostarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_MostarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jd_MostarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cb_Mundos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jl_Mundos2))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jd_EliminarLayout = new javax.swing.GroupLayout(jd_Eliminar.getContentPane());
@@ -464,56 +433,37 @@ public class Principal extends javax.swing.JFrame {
 
     private void bt_LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_LoginMouseClicked
         // TODO add your handling code here:
-        if (tf_Usuario.getText().equals(usuario)) {
-            String clave = pd_Clave.getText(), nue = "";
-            int a, n, llave = Integer.parseInt(pd_Clave.getText());
-            char l;
-            for (int i = 0; i < clave.length(); i++) {
-                a = clave.codePointAt(i);
-                if (a == 122) {
-                    a = 65;
-                }
-                if (a == 90) {
-                    a = 97;
-                }
-                n = a + llave;
-                l = (char) n;
-                nue += l;
-            }//Fin del for 
-            JFileChooser jfc = new JFileChooser("./Mundos");
-            FileNameExtensionFilter filt = new FileNameExtensionFilter("Archivos de texto", "txt");
-            jfc.addChoosableFileFilter(filt);
-            int selec = jfc.showSaveDialog(this);
-            FileWriter fw = null;
-            BufferedWriter bw = null;
-            if (selec == JFileChooser.APPROVE_OPTION) {
-                try {
-                    File fichero = null;
-                    if (jfc.getFileFilter().getDescription().equals("Archivos de Texto")) {
-                        fichero = new File(jfc.getSelectedFile().getPath() + "txt");
-                    } else {
-                        fichero = jfc.getSelectedFile();
+        try {
+            MD2 = new Mundo_Disco_2("./Uuario");
+            MD2.cargarArchivo();
+            if (tf_Usuario.getText().equals(usuario)) {
+                String clave = pd_Clave.getText(), nue = "";
+                int a, n, llave = Integer.parseInt(pd_Clave.getText());
+                char l;
+                for (int i = 0; i < clave.length(); i++) {
+                    a = clave.codePointAt(i);
+                    if (a == 122) {
+                        a = 65;
                     }
-                    fw = new FileWriter(fichero);
-                    bw = new BufferedWriter(fw);
-                    bw.write(tf_Usuario + "/" + nue + "/" + pd_Clave);
-                    pd_Clave.setText("");
-                    tf_Usuario.setText("");
-                    bw.flush();
-                    JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                    if (a == 90) {
+                        a = 97;
+                    }
+                    n = a + llave;
+                    l = (char) n;
+                    nue += l;
+                }//Fin del for 
+                jm_Agregar_C.setEnabled(true);
+                jm_CrearD.setEnabled(true);
+                jm_Eliminar.setEnabled(true);
+                jm_Mostar.setEnabled(true);
+                jm_Modificar.setEnabled(true);
+                jm_Abrir.setEnabled(true);
+                jm_Guardar.setEnabled(true);
+                MD2.escribirArchivo();
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario Incorecto");
             }
-            jm_Agregar_C.setEnabled(true);
-            jm_CrearD.setEnabled(true);
-            jm_Eliminar.setEnabled(true);
-            jm_Mostar.setEnabled(true);
-            jm_Modificar.setEnabled(true);
-            jm_Abrir.setEnabled(true);
-            jm_Guardar.setEnabled(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Usuario Incorecto");
+        } catch (IOException e) {
         }
     }//GEN-LAST:event_bt_LoginMouseClicked
 
@@ -525,7 +475,6 @@ public class Principal extends javax.swing.JFrame {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Mundos.getModel();
         modelo.addElement(md);
         cb_Mundos.setModel(modelo);
-        cb_Mundos2.setModel(modelo);
     }//GEN-LAST:event_jm_CrearDMouseClicked
 
     private void bt_AregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_AregarMouseClicked
@@ -558,18 +507,12 @@ public class Principal extends javax.swing.JFrame {
         jd_Agregar.setVisible(true);
     }//GEN-LAST:event_jm_Agregar_CMouseClicked
 
-    private void cb_Mundos2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_Mundos2ItemStateChanged
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_cb_Mundos2ItemStateChanged
-
     private void jm_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_EliminarMouseClicked
 
     }//GEN-LAST:event_jm_EliminarMouseClicked
 
     private void jm_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_ModificarMouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jm_ModificarMouseClicked
 
     private void bt_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_ModificarMouseClicked
@@ -579,7 +522,38 @@ public class Principal extends javax.swing.JFrame {
 
     private void jm_AbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_AbrirMouseClicked
         // TODO add your handling code here:
-
+        jd_Mostar.setModal(true);
+        jd_Mostar.pack();
+        jd_Mostar.setLocationRelativeTo(this);
+        File fichero = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        ta_1.setText("");
+        try {
+            JFileChooser jfc = new JFileChooser("./");
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de texto", "txt");
+            jfc.setFileFilter(filtro);
+            int selec = jfc.showOpenDialog(this);
+            if (selec == JFileChooser.APPROVE_OPTION) {
+                fichero = jfc.getSelectedFile();
+                fr = new FileReader(fichero);
+                br = new BufferedReader(fr);
+                String linea;
+                ta_1.setText("");
+                while ((linea = br.readLine()) != null) {
+                    ta_1.append(linea);
+                    ta_1.append("\n");
+                }//Fin del while
+            }//Fin del if
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+        }
+        jd_Mostar.setVisible(true);
     }//GEN-LAST:event_jm_AbrirMouseClicked
 
     private void jm_GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_GuardarMouseClicked
@@ -660,7 +634,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton bt_Login;
     private javax.swing.JButton bt_Modificar;
     private javax.swing.JComboBox<String> cb_Mundos;
-    private javax.swing.JComboBox<String> cb_Mundos2;
     private javax.swing.JLabel hl_Contraseña;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -673,7 +646,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_Mostar;
     private javax.swing.JLabel jl_Cant_C_E;
     private javax.swing.JLabel jl_Modificacion;
-    private javax.swing.JLabel jl_Mundos2;
     private javax.swing.JLabel jl_Nombre;
     private javax.swing.JLabel jl_Nombre_C_R;
     private javax.swing.JLabel jl_Numero_C;
@@ -691,10 +663,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jm_Modificar;
     private javax.swing.JMenu jm_Mostar;
     private javax.swing.JMenuBar jmb_Menu;
-    private javax.swing.JTable jt_Tabla1;
     private javax.swing.JPasswordField pd_Clave;
     private javax.swing.JTextArea ta_1;
     private javax.swing.JTextArea ta_2;
+    private javax.swing.JTextArea ta_3;
     private javax.swing.JTextField tf_Cant_E;
     private javax.swing.JTextField tf_Cant_Vivas;
     private javax.swing.JTextField tf_Modi;
