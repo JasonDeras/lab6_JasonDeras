@@ -2,6 +2,7 @@ package lab6;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class Mundo_Disco_2 {
 
     private ArrayList<Criaturas> cria = new ArrayList();
+    private ArrayList<Mundo_Disco> m = new ArrayList();
     private File archivo = null;
 
     public Mundo_Disco_2(String path) {
@@ -39,14 +41,18 @@ public class Mundo_Disco_2 {
         try {
             fw = new FileWriter(archivo, true);
             bw = new BufferedWriter(fw);
-            for (Criaturas c : cria) {
-                bw.write(c.getNombre_c() + "|");
-                bw.write(c.getEnergia_v() + "|");
-                bw.write(c.getAños() + "|");
-                bw.write(c.getNombre_r() + "|");
-                bw.write(c.getCant_p() + "|");
+            for (Mundo_Disco mu : m) {
+                bw.write(mu.getNombre_t() + ";");
+                for (int i = 0; i < mu.getCria().size(); i++) {
+                    bw.write(mu.getCria().get(i).getNombre_c() + ",");
+                    bw.write(mu.getCria().get(i).getEnergia_v() + ",");
+                    bw.write(mu.getCria().get(i).getAños() + ",");
+                    bw.write(mu.getCria().get(i).getNombre_r() + ",");
+                    bw.write(mu.getCria().get(i).getCant_p() + ",");
+                    bw.write(mu.getCria().get(i).getObjectos_m() + ",");
+                }
+                bw.write(";");
             }
-            bw.write("|");
             bw.flush();
         } catch (Exception ex) {
         }
@@ -56,18 +62,26 @@ public class Mundo_Disco_2 {
 
     public void cargarArchivo() {
         Scanner s = null;
+        Scanner s2 = null;
+        m = new ArrayList();
         cria = new ArrayList();
         if (archivo.exists()) {
             try {
                 s = new Scanner(archivo);
-                s.useDelimiter("|");
+                s2 = new Scanner(archivo);
+                s2.useDelimiter(",");
+                s.useDelimiter(";");
                 while (s.hasNext()) {
-                    cria.add(new Criaturas(s.next(), s.nextDouble(), s.nextInt(), s.next(), s.nextInt()));
+                    while (s2.hasNext()) {
+                        cria.add(new Criaturas(s2.next(), s2.nextDouble(), s2.nextInt(), s2.next(), s2.nextInt()));
+                        m.add(new Mundo_Disco(s.next()));
+                        m.get(m.size() - 1).setCria(cria);
+                    }
                 }
             } catch (Exception e) {
             }
             s.close();
+            s2.close();
         }
-        s.close();
     }
 }

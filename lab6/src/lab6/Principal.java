@@ -513,10 +513,35 @@ public class Principal extends javax.swing.JFrame {
 
     private void jm_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_ModificarMouseClicked
         // TODO add your handling code here:
+        jd_Modificar.setModal(true);
+        jd_Modificar.pack();
+        jd_Modificar.setLocationRelativeTo(this);
+        jd_Modificar.setVisible(true);
     }//GEN-LAST:event_jm_ModificarMouseClicked
 
     private void bt_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_ModificarMouseClicked
         // TODO add your handling code here:
+        try {
+            int op = Integer.parseInt(tf_Op.getText());
+            String op2 = tf_Op.getText();
+            if (op == 1 || op2.equals("nombre del disco")) {
+                md.setNombre_t(tf_Modi.getText());
+            } else if (op == 2 || op2.equalsIgnoreCase("nombre de la criatura")) {
+                c.setNombre_c(tf_Modi.getText());
+            } else if (op == 3 || op2.equals("cantidad de energia vital")) {
+                c.setEnergia_v(Integer.parseInt(tf_Modi.getText()));
+            } else if (op == 4 || op2.equalsIgnoreCase("numero maximo de años")) {
+                c.setAños(Integer.parseInt(tf_Modi.getText()));
+            } else if (op == 5) {
+                
+            } else if (op == 5) {
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Opcion no valida");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }//GEN-LAST:event_bt_ModificarMouseClicked
 
@@ -530,7 +555,7 @@ public class Principal extends javax.swing.JFrame {
         BufferedReader br = null;
         ta_1.setText("");
         try {
-            JFileChooser jfc = new JFileChooser("./");
+            JFileChooser jfc = new JFileChooser("./Mundos");
             FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de texto", "txt");
             jfc.setFileFilter(filtro);
             int selec = jfc.showOpenDialog(this);
@@ -600,21 +625,21 @@ public class Principal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
