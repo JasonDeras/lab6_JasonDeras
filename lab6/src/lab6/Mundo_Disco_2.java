@@ -30,6 +30,14 @@ public class Mundo_Disco_2 {
         this.cria.add(c);
     }
 
+    public ArrayList<Mundo_Disco> getM() {
+        return m;
+    }
+
+    public void setM(ArrayList<Mundo_Disco> m) {
+        this.m = m;
+    }
+
     @Override
     public String toString() {
         return "Mundo_Disco_2{" + "archivo=" + archivo + '}';
@@ -39,7 +47,7 @@ public class Mundo_Disco_2 {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            fw = new FileWriter(archivo, true);
+            fw = new FileWriter(archivo, false);
             bw = new BufferedWriter(fw);
             for (Mundo_Disco mu : m) {
                 bw.write(mu.getNombre_t() + ";");

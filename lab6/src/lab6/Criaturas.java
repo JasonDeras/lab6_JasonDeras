@@ -75,4 +75,6 @@ public class Criaturas {
         return "Criaturas{" + "nombre_c=" + nombre_c + ", energia_v=" + energia_v + ", a\u00f1os=" + años + ", nombre_r=" + nombre_r + ", cant_p=" + cant_p + ", objectos_m=" + objectos_m + '}';
     }
 
+   
+
 }

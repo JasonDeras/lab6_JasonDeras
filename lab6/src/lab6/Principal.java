@@ -521,21 +521,32 @@ public class Principal extends javax.swing.JFrame {
 
     private void bt_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_ModificarMouseClicked
         // TODO add your handling code here:
+        MD2 = new Mundo_Disco_2("./Mundos");
+        int pos = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese una posicion"));
         try {
             int op = Integer.parseInt(tf_Op.getText());
             String op2 = tf_Op.getText();
             if (op == 1 || op2.equals("nombre del disco")) {
-                md.setNombre_t(tf_Modi.getText());
+                MD2.getM().get(pos).setNombre_t(tf_Modi.getText());
+                MD2.escribirArchivo();
             } else if (op == 2 || op2.equalsIgnoreCase("nombre de la criatura")) {
-                c.setNombre_c(tf_Modi.getText());
+                MD2.getCria().get(pos).setNombre_c(tf_Modi.getText());
+                MD2.escribirArchivo();
             } else if (op == 3 || op2.equals("cantidad de energia vital")) {
-                c.setEnergia_v(Integer.parseInt(tf_Modi.getText()));
+                MD2.getCria().get(pos).setEnergia_v(Double.parseDouble(tf_Modi.getText()));
+                MD2.escribirArchivo();
             } else if (op == 4 || op2.equalsIgnoreCase("numero maximo de años")) {
-                c.setAños(Integer.parseInt(tf_Modi.getText()));
-            } else if (op == 5) {
-                
-            } else if (op == 5) {
-                
+                MD2.getCria().get(pos).setAños(Integer.parseInt(tf_Modi.getText()));
+                MD2.escribirArchivo();
+            } else if (op == 5 || op2.equals("cantidad de vivas de es especie")) {
+                MD2.getCria().get(pos).setCant_p(Integer.parseInt(tf_Modi.getText()));
+                MD2.escribirArchivo();
+            } else if (op == 6 || op2.equals("objetos magicos")) {
+                ArrayList<String> ob = new ArrayList();
+                ob.add(tf_Modi.getText());
+                c.setObjectos_m(ob);
+                MD2.getCria().get(pos).setObjectos_m(ob);
+                MD2.escribirArchivo();
             } else {
                 JOptionPane.showMessageDialog(this, "Opcion no valida");
             }
