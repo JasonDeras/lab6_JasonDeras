@@ -64,6 +64,9 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_3 = new javax.swing.JTextArea();
         jd_Eliminar = new javax.swing.JDialog();
+        jl_Pos = new javax.swing.JLabel();
+        bt_Eliminar = new javax.swing.JButton();
+        tf_Posicion = new javax.swing.JTextField();
         jd_Modificar = new javax.swing.JDialog();
         jScrollPane2 = new javax.swing.JScrollPane();
         ta_1 = new javax.swing.JTextArea();
@@ -248,15 +251,41 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
         );
 
+        jl_Pos.setText("Ingrese una posicion a eliminar");
+
+        bt_Eliminar.setText("Eliminar");
+        bt_Eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_EliminarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_EliminarLayout = new javax.swing.GroupLayout(jd_Eliminar.getContentPane());
         jd_Eliminar.getContentPane().setLayout(jd_EliminarLayout);
         jd_EliminarLayout.setHorizontalGroup(
             jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_EliminarLayout.createSequentialGroup()
+                .addGroup(jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_EliminarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jl_Pos)
+                        .addGap(29, 29, 29)
+                        .addComponent(tf_Posicion, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_EliminarLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(bt_Eliminar)))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jd_EliminarLayout.setVerticalGroup(
             jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_EliminarLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jd_EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_Pos)
+                    .addComponent(tf_Posicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(78, 78, 78)
+                .addComponent(bt_Eliminar)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         ta_1.setEditable(false);
@@ -484,6 +513,7 @@ public class Principal extends javax.swing.JFrame {
             c = new Criaturas(tf_Nombre_C.getText(), Double.parseDouble(tf_Cant_E.getText()), Integer.parseInt(tf_Numero_A.getText()), tf_Nombre_R.getText(), Integer.parseInt(tf_Cant_Vivas.getText()));
             ArrayList cria = new ArrayList();
             cria.add(c);
+            fichero = new File("./Criaturas" + cria);
             md.setCria(cria);
             MD2.getCria().add(c);
             MD2.escribirArchivo();
@@ -508,7 +538,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jm_Agregar_CMouseClicked
 
     private void jm_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_EliminarMouseClicked
-
+        jd_Eliminar.setModal(true);
+        jd_Eliminar.pack();
+        jd_Eliminar.setLocationRelativeTo(this);
+        jd_Eliminar.setVisible(true);
     }//GEN-LAST:event_jm_EliminarMouseClicked
 
     private void jm_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_ModificarMouseClicked
@@ -553,7 +586,6 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }//GEN-LAST:event_bt_ModificarMouseClicked
 
     private void jm_AbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jm_AbrirMouseClicked
@@ -622,6 +654,23 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jm_GuardarMouseClicked
 
+    private void bt_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_EliminarMouseClicked
+        // TODO add your handling code here:
+        MD2 = new Mundo_Disco_2("./Mundos");
+        MD2.cargarArchivo();
+        int pos = Integer.parseInt(tf_Posicion.getText());
+        fichero = new File("./Criaturas" + MD2.getCria().get(pos).getNombre_c() + "txt");
+        try {
+            MD2.getCria().remove(pos);
+            if (fichero.delete()) {
+                JOptionPane.showMessageDialog(this, "Archivo Eliminado");
+            }
+            MD2.escribirArchivo();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "El archivo no fue eliminado");
+        }
+    }//GEN-LAST:event_bt_EliminarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -636,21 +685,21 @@ public class Principal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -667,6 +716,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_Aregar;
+    private javax.swing.JButton bt_Eliminar;
     private javax.swing.JButton bt_Login;
     private javax.swing.JButton bt_Modificar;
     private javax.swing.JComboBox<String> cb_Mundos;
@@ -687,6 +737,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jl_Numero_C;
     private javax.swing.JLabel jl_Objeto_Magico;
     private javax.swing.JLabel jl_Opcion;
+    private javax.swing.JLabel jl_Pos;
     private javax.swing.JLabel jl_Selc_M;
     private javax.swing.JLabel jl_Usuario;
     private javax.swing.JLabel jl_Vivas_C;
@@ -711,6 +762,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_Numero_A;
     private javax.swing.JTextField tf_Objeto_Magico;
     private javax.swing.JTextField tf_Op;
+    private javax.swing.JTextField tf_Posicion;
     private javax.swing.JTextField tf_Usuario;
     // End of variables declaration//GEN-END:variables
   private String usuario = "xXxGranATuinxXx";
@@ -718,4 +770,5 @@ public class Principal extends javax.swing.JFrame {
     private Criaturas c;
     private ArrayList<Mundo_Disco> MD = new ArrayList();
     private Mundo_Disco_2 MD2;
+    private File fichero = null;
 }
